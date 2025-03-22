@@ -32,9 +32,9 @@ const XhsEditor = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-5 max-w-7xl mx-auto p-5">
+    <div className="flex flex-row gap-5 max-w-7xl mx-auto p-5">
       {/* 编辑区域 */}
-      <div className="flex-1 flex flex-col gap-4">
+      <div className="w-1/3 flex flex-col gap-4">
         <h2 className="text-xl font-bold text-gray-800">小红书编辑器</h2>
         <div className="flex gap-3">
           <button 
@@ -46,7 +46,7 @@ const XhsEditor = () => {
         </div>
         
         {/* 缩放控制 */}
-        <div className="mt-4">
+        <div className="mx-[5px] p-[10px]">
           <h3 className="text-lg font-medium text-gray-700 mb-2">预览缩放: {(scale * 100).toFixed(0)}%</h3>
           <input 
             type="range" 
@@ -61,7 +61,7 @@ const XhsEditor = () => {
       </div>
       
       {/* 预览区域 */}
-      <div className="w-full overflow-auto">
+      <div className="w-2/3 overflow-auto p-[10px]">
         <h2 className="text-xl font-bold text-gray-800 mb-4">预览</h2>
         <div className="overflow-auto">
           <div 
@@ -74,7 +74,8 @@ const XhsEditor = () => {
                 marginBottom: `${scale * 100 - 100}%`,
               }}
           >
-              <h1 className='underline decoration-sky-500'>Testing Heading</h1>
+              <h1 className='underline text-red-500'>Testing Heading</h1>
+              {/* 这里去加入最近的投资结构 */}
           </div>
         </div>
       </div>

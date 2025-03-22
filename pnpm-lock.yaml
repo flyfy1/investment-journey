@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@tailwindcss/vite':
-        specifier: ^4.0.14
+        specifier: ^4.0.9
         version: 4.0.14(vite@6.2.2(jiti@2.4.2)(lightningcss@1.29.2))
       html2canvas:
         specifier: ^1.4.1
@@ -20,6 +20,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.0.0(react@19.0.0)
+      tailwindcss:
+        specifier: ^4.0.9
+        version: 4.0.14
     devDependencies:
       '@eslint/js':
         specifier: ^9.21.0
@@ -51,9 +54,6 @@ importers:
       postcss:
         specifier: ^8.5.3
         version: 8.5.3
-      tailwindcss:
-        specifier: ^4.0.14
-        version: 4.0.14
       typescript:
         specifier: ~5.7.2
         version: 5.7.3
