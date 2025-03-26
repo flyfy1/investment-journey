@@ -1,13 +1,29 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import html2canvas from 'html2canvas-pro';
 import { SymbolTrade, TradePair, tradesWeek250318 } from '../data/investment';
 import moment from 'moment';
 
 const appName = '小红书图片生成'
 const standardTimeFormat = "YYYY-MM-DD HH:mm";
+const buttonClassName = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded";
 
 const XhsEditor = () => {
   const downloadableRef = useRef<HTMLDivElement>(null);
+
+  const [index, setIndex] = useState(0)
+  const indexInc = () => {
+    if(index == tradesWeek250318.length - 1) {
+      return;
+    } 
+    setIndex((index + 1) % tradesWeek250318.length)
+  }
+  const indexDec = () => {
+    if(index == 0) {
+      return;
+    }
+    setIndex((index - 1) % tradesWeek250318.length)
+  }
+  const tradingPair = tradesWeek250318[index];
 
   const generateImage = async () => {
     if (!downloadableRef.current) return;
@@ -23,7 +39,7 @@ const XhsEditor = () => {
       const image = canvas.toDataURL('image/png');
       const link = document.createElement('a');
       link.href = image;
-      link.download = `小红书图片_${new Date().getTime()}.png`;
+      link.download = `小红书图片_${index}_${tradingPair.name}.png`;
       link.click();
     } catch (error) {
       console.error('生成图片失败:', error);
@@ -31,7 +47,6 @@ const XhsEditor = () => {
     }
   };
 
-  console.log(tradesWeek250318)
 
   return (
     <div className="flex max-w-7xl mx-auto p-5">
@@ -41,6 +56,11 @@ const XhsEditor = () => {
           <p className="text-gray-600 mt-2">编辑内容并生成1080x1350的图片</p>
         </header>
       
+        <div>
+          <button onClick={indexDec} className={buttonClassName}>Prev</button>
+          <span className="mx-2 text-lg font-semibold">{index}</span>
+          <button onClick={indexInc} className={buttonClassName}>Next</button>
+        </div>
         <button 
           onClick={generateImage}
           className="px-4 py-2 bg-[#ff2442] text-white font-medium rounded hover:bg-[#e61c38] transition-colors"
@@ -49,7 +69,7 @@ const XhsEditor = () => {
         </button>
       
         <footer className="py-8 text-center text-gray-500 text-sm">
-          <p>© 2024 {appName}</p>
+          <p>© 2025 {appName}</p>
         </footer>
       </div>
 
@@ -60,7 +80,7 @@ const XhsEditor = () => {
           className="bg-white w-[1080px] h-[1350px] p-10"
           ref={downloadableRef}
         >
-          <SingleCardView tradingPair={tradesWeek250318[1]}/>
+          <SingleCardView tradingPair={tradingPair}/>
         </div>
       </div>
     </div>
