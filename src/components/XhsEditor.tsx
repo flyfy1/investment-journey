@@ -146,14 +146,14 @@ function SingleCardView({tradingPair}: {tradingPair: TradePair}) {
       })}
     </div>
     <div>
-      <h1 className='text-2xl'>事后思考</h1>
+      <h1 className='text-3xl pt-10'>事后思考</h1>
       {tradingPair.afterThoughts.map((thought, index) => {
         const thoughtTime = moment(thought.timestamp!);
         return <div>
-          <h2 className='text-2xl'>{ft(thoughtTime)}</h2>
+          <h2 className='text-2xl pt-2'>{ft(thoughtTime)}</h2>
           <ul key={index} className='text-xl'>
             {thought.lines.map((line, idx) => (
-              <li key={idx} className='text-xl'>{line}</li>
+              <li key={idx} className='text-xl pl-2'>{line}</li>
             ))}
           </ul>
         </div>
